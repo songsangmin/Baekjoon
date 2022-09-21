@@ -4,7 +4,7 @@ lines = int(input())
 #행렬 만들기
 graph = [list(map(int, input())) for _ in range(lines)]
 
-num = []
+num = [] #집 개수 비교를 위한 선언
 
 #상하좌우 비교를 위한 선언
 dx = [-1, 1, 0, 0]
@@ -21,7 +21,7 @@ def Compare(x,y):
     if graph[x][y] == 1:
         global count
         count += 1
-        graph[x][y] = 0 #탐색위치 0 변경 -> 이것 때문에 재탐색 안됨
+        graph[x][y] = 0 #탐색위치 초기화 -> 이것 때문에 재탐색x
         for i in range(4): 
             nx = x + dx[i] #좌우비교
             ny = y + dy[i] #상하비교
@@ -32,11 +32,11 @@ def Compare(x,y):
 for i in range(lines):
     for j in range(lines):
         if Compare(i,j) == True:
-            num.append(count)
-            number += 1
-            count = 0
+            num.append(count) #집 개수 비교를 위해 추가
+            number += 1 #단지 개수 추가
+            count = 0 #집 개수 초기화
 
-num.sort() #정렬
-print(number)
+num.sort() #단지 별 집 개수 오름차순
+print(number) #단지 개수 출력
 for i in range(len(num)):
-    print(num[i])
+    print(num[i]) #집 개수 출력
